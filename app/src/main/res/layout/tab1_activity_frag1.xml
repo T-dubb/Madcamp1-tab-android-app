@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Tab1.Frag1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/inputName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4.5"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Name"
+            android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/inputAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.7"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Address..."
+            android:inputType="textMultiLine" />
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5.8"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_baseline_add_circle_24"/>
+
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"></FrameLayout>
+
+</LinearLayout>
