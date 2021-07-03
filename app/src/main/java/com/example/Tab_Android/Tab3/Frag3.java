@@ -47,4 +47,8 @@ public class Frag3 extends Fragment {
 
         return v;
     }
+    private void CurrentCall(){
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=daejeon&appid=99162b3225b63083cfc32b51154370bf";
+
+    }
 }
