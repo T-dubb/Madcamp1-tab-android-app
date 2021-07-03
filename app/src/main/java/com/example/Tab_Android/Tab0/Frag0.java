@@ -1,4 +1,4 @@
-package com.example.Tab_Android.Tab3;
+package com.example.Tab_Android.Tab0;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import java.util.Date;
 
 import com.example.Tab_Android.R;
 
-public class Frag3 extends Fragment {
+public class Frag0 extends Fragment {
 
     TextView dateView;
 
