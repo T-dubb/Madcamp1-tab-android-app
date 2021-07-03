@@ -25,6 +25,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:button="@drawable/btn_star"
+            android:textColor="@color/black"
             android:buttonTint="#FFEB3B" />
 
         <ImageButton

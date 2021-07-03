@@ -7,8 +7,7 @@ import android.os.Bundle;
 
 import com.example.Tab_Android.Tab1.Frag1;
 import com.example.Tab_Android.Tab2.Frag2;
-import com.example.Tab_Android.Tab2.Frag2;
-import com.example.Tab_Android.Tab3.Frag3;
+import com.example.Tab_Android.Tab0.Frag0;
 import com.google.android.material.tabs.TabLayout;
 
 public class TabActivity extends AppCompatActivity {
@@ -28,9 +27,10 @@ public class TabActivity extends AppCompatActivity {
         adapter=new FragmentAdapter(getSupportFragmentManager(),1);
 
         //FragmentAdapter에 컬렉션 담기
+        adapter.addFragment(new Frag0());
         adapter.addFragment(new Frag1());
         adapter.addFragment(new Frag2());
-        adapter.addFragment(new Frag3());
+        adapter.addFragment(new Frag0());
 
         //ViewPager Fragment 연결
         viewPager.setAdapter(adapter);
@@ -38,8 +38,10 @@ public class TabActivity extends AppCompatActivity {
         //ViewPager과 TabLayout 연결
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setText("Contacts");
-        tabLayout.getTabAt(1).setText("Album");
-        tabLayout.getTabAt(2).setText("^_^");
+        tabLayout.getTabAt(1).setText("Contacts");
+        tabLayout.getTabAt(2).setText("Album");
+        tabLayout.getTabAt(0).setText("Main");
+        tabLayout.getTabAt(3).setText("Commute");
+
     }
 }
