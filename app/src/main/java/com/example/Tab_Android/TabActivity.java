@@ -27,8 +27,10 @@ public class TabActivity extends AppCompatActivity {
         adapter=new FragmentAdapter(getSupportFragmentManager(),1);
 
         //FragmentAdapter에 컬렉션 담기
+        adapter.addFragment(new Frag3());
         adapter.addFragment(new Frag1());
         adapter.addFragment(new Frag2());
+        adapter.addFragment(new Frag3());
         adapter.addFragment(new Frag3());
 
         //ViewPager Fragment 연결
@@ -37,8 +39,11 @@ public class TabActivity extends AppCompatActivity {
         //ViewPager과 TabLayout 연결
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setText("Contacts");
-        tabLayout.getTabAt(1).setText("Album");
-        tabLayout.getTabAt(2).setText("^_^");
+        tabLayout.getTabAt(1).setText("Contacts");
+        tabLayout.getTabAt(2).setText("Album");
+        tabLayout.getTabAt(0).setText("Main");
+        tabLayout.getTabAt(3).setText("New1");
+        tabLayout.getTabAt(4).setText("New2");
+
     }
 }
