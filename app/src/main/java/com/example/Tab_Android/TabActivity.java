@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.Tab_Android.Tab1.Frag1;
 import com.example.Tab_Android.Tab2.Frag2;
+import com.example.Tab_Android.Tab2.Frag2;
 import com.example.Tab_Android.Tab3.Frag3;
 import com.google.android.material.tabs.TabLayout;
 

@@ -4,13 +4,11 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import android.transition.Fade;
 import android.transition.Scene;
 import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,16 +17,16 @@ import android.widget.ImageView;
 
 import com.example.Tab_Android.R;
 
+import java.util.Objects;
+
 
 public class Frag2 extends Fragment {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        TransitionInflater inflater = TransitionInflater.from(requireContext());
-        setExitTransition(inflater.inflateTransition(R.transition.fade));
-    }
-
+    Scene rootScene;
+    Scene catScene;
+    Scene foodScene;
+    Scene dessertScene;
+    Scene landScene;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,32 +36,30 @@ public class Frag2 extends Fragment {
 
     }
 
-    public void onViewCreated(View view, @Nullable Bundle SavedInstanceState){
-        ViewGroup sceneRoot = getView().findViewById(R.id.view_pager);
+    public void onViewCreated(View view, Bundle SavedInstanceState) {
+        ViewGroup sceneRoot = requireView().findViewById(R.id.tab2_main);
+        // Create the scenes
+        rootScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_album, getActivity());
+        catScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_cat, getActivity());
+        foodScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_food, getActivity());
+        dessertScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_dessert, getActivity());
+        landScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_land, getActivity());
 
-        ImageView Album1 = (ImageView) getView().findViewById(R.id.imageView);//Cat
-        ImageView Album2 = (ImageView) getView().findViewById(R.id.imageView2);//Food
-        ImageView Album4 = (ImageView) getView().findViewById(R.id.imageView4);//Dessert
-        ImageView Album3 = (ImageView) getView().findViewById(R.id.imageView3);//Rail
+        Transition fadeTransition = new Fade();
 
-        ViewCompat.setTransitionName(Album1, "cat_image");
-/**
-        Fragment catFragment = new CatFragment();
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(...)
-                .addSharedElement(itemImageView, “hero_image”)
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit();
 
-        /**
+        ImageView Album1 = (ImageView) getView().findViewById(R.id.imageView);//get the id of first image view
+        ImageView Album2 = (ImageView) getView().findViewById(R.id.imageView2);//get the id of second image view
+        ImageView Album4 = (ImageView) getView().findViewById(R.id.imageView4);//get the id of fourth image view
+        ImageView Album3 = (ImageView) getView().findViewById(R.id.imageView3);//get the id of third image view
+
+
         Album1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TransitionManager.go(catScene, fadeTransition);
             }
         });
-
         Album2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,12 +79,12 @@ public class Frag2 extends Fragment {
             }
         });
 
-        OnBackPressedCallback callback = new OnBackPressedCallback(true){
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
-            public void handleOnBackPressed(){
+            public void handleOnBackPressed() {
                 TransitionManager.go(rootScene, fadeTransition);
             }
         };
-         */
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
     }
 }
