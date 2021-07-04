@@ -28,7 +28,7 @@ public class Frag0 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.tab3_activity_frag3,container,false);
+        View v=inflater.inflate(R.layout.tab0_activity_frag0,container,false);
         ImageButton button = v.findViewById(R.id.imageButton);
         dateView = v.findViewById(R.id.dateView);
         button.setOnClickListener(new View.OnClickListener() {

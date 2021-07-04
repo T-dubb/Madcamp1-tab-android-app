@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.Tab_Android"
     android:targetSandboxVersion="1">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +17,13 @@
         android:theme="@style/Theme.ViewPagerExample"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name="com.example.Tab_Android.TabActivity">
+        <activity android:name=".Tab3.MapActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB529yYfuW1-z2xvQ-x7_AZ9aYFDTctRzk" />
+
+        <activity android:name=".TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,4 +31,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
