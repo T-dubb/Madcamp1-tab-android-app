@@ -35,6 +35,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -195,6 +197,13 @@ public class Frag3 extends Fragment {
                             //Add marker on map
                             googleMap.addMarker(user);
                             googleMap.addMarker(company);
+                            googleMap.addCircle(new CircleOptions()
+                                    .center(latLng_company)
+                                    .radius(100)
+                                    .strokeWidth(3f)
+                                    .strokeColor(Color.argb(103, 128, 159, 1))
+                                    .fillColor(Color.argb(103, 128, 159, 1))
+                                    .visible(true));
                         }
                     });
                 }
