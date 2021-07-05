@@ -129,7 +129,7 @@ public class Frag3 extends Fragment {
                         Date date = new Date(clicktime);
                         long intervaltime = (date.getTime() - tempdate.getTime())/1000+1;
 
-                        if(intervaltime <= 2){
+                        if(intervaltime <= 1){
                             Toast.makeText(view.getContext(),"엥 벌써 퇴근하시게요..?",Toast.LENGTH_SHORT).show();
                         }
                         else if(intervaltime > 15){
@@ -159,7 +159,7 @@ public class Frag3 extends Fragment {
                             leave_time.setText("퇴근시각: "+leavetime);
                             interval_time.setText(sp);
                             isCommuted=false;
-                            totalcommute.setText("총 "+(totalcommuted++)+"회 출근");
+                            totalcommute.setText("총 "+(++totalcommuted)+"회 출근");
                             setButtonUI("Commute", R.color.green);
                             Toast.makeText(view.getContext(),"퇴근 완료",Toast.LENGTH_SHORT).show();
                         }
