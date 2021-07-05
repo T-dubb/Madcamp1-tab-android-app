@@ -16,12 +16,17 @@ import android.os.PatternMatcher;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.Tab_Android.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -42,10 +47,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static androidx.core.content.ContextCompat.checkSelfPermission;
 
 public class Frag3 extends Fragment {
-
+    // Initialize variable
     boolean isCommuted = false;
     boolean isInRange;
     Button commute_button;
@@ -54,7 +58,13 @@ public class Frag3 extends Fragment {
     TextView leave_time;
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
+
     long clicktime;
+
+    double lat1 =36.37418, long1 = 127.3659; //Location of the company
+    double lat2=0, long2=0; //Location of the user
+    double dist; //Distance of the company and the use
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,10 +89,73 @@ public class Frag3 extends Fragment {
         }
 
 
+        commute_button = (Button) view.findViewById(R.id.commute_button);
+        interval_time = (TextView) view.findViewById(R.id.interval_time);
+        commute_time = (TextView) view.findViewById(R.id.commute_time);
+        leave_time = (TextView) view.findViewById(R.id.leave_time);
+        commute_button.setOnClickListener( new View.OnClickListener() {
+            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            @Override
+            public void onClick(View view) {
+                if(isInRange){
+                    if(isCommuted == false){
+                        clicktime = System.currentTimeMillis();
+                        Date date = new Date(clicktime);
+                        String commutetime = dateFormat.format(date);
+                        commute_time.setText("출근시각: " + commutetime );
+                        leave_time.setText("퇴근시각: ");
+                        interval_time.setText("총 " + Long.toString(0) + "초 근무했습니다");
 
+                        isCommuted = true;
+                        setButtonUI("Leave", R.color.red);
+                        Toast.makeText(view.getContext(),"출근 완료",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        long temp = clicktime;
+                        clicktime = System.currentTimeMillis();
+                        Date tempdate = new Date(temp);
+                        Date date = new Date(clicktime);
+                        long intervaltime = (date.getTime() - tempdate.getTime())/1000+1;
 
+                        if(intervaltime <= 2){
+                            Toast.makeText(view.getContext(),"엥 벌써 퇴근하시게요..?",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(intervaltime > 15){
+                            String string_s = ""+intervaltime;
+                            String total_work = "총 " + Long.toString(intervaltime) + "초 근무했습니다.";
 
+                            String toomuchwork = "세상에 " + intervaltime + "초나 일하셨네요...ㄷㄷ";
 
+                            SpannableStringBuilder sp = new SpannableStringBuilder(total_work);
+                            sp.setSpan(new ForegroundColorSpan(Color.parseColor("#8B0000")), 2, (2+string_s.length()), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            Toast.makeText(view.getContext(), toomuchwork ,Toast.LENGTH_SHORT).show();
+                            String leavetime = dateFormat.format(date);
+                            leave_time.setText("퇴근시각: "+leavetime);
+                            interval_time.setText(sp);
+                            isCommuted=false;
+                            setButtonUI("Commute", R.color.green);
+                        }
+                        else{
+                            String string_s = ""+intervaltime;
+                            String total_work = "총 " + Long.toString(intervaltime) + "초 근무했습니다.";
+                            SpannableStringBuilder sp = new SpannableStringBuilder(total_work);
+                            sp.setSpan(new ForegroundColorSpan(Color.parseColor("#006400")), 2, (2+string_s.length()), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            String leavetime = dateFormat.format(date);
+                            leave_time.setText("퇴근시각: "+leavetime);
+                            interval_time.setText(sp);
+                            isCommuted=false;
+                            setButtonUI("Commute", R.color.green);
+                            Toast.makeText(view.getContext(),"퇴근 완료",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(view.getContext(),"직장과 너무 멀리 있습니다",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         //Return view
         return view;
@@ -100,16 +173,28 @@ public class Frag3 extends Fragment {
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
+                            //Get lat long numbers
+                            lat2 = location.getLatitude();
+                            long2 = location.getLongitude();
+
                             //Initialize lat lng
-                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                            LatLng latLng_company = new LatLng(lat1, long1);
+                            LatLng latLng_current = new LatLng(lat2, long2);
+
+
+                            //Calculate distance
+                            dist = distance(lat1, long1, lat2, long2);
+                            if (dist<=100) isInRange = true;
+                            System.out.format("Distance: %2f", dist);
 
                             //Create marker options
-                            MarkerOptions options = new MarkerOptions().position(latLng).title("here");
+                            MarkerOptions user = new MarkerOptions().position(latLng_current).title("you are here");
+                            MarkerOptions company = new MarkerOptions().position(latLng_company).title("company");
                             //Zoom map
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng_current, 17));
                             //Add marker on map
-                            googleMap.addMarker(options);
-
+                            googleMap.addMarker(user);
+                            googleMap.addMarker(company);
                         }
                     });
                 }
@@ -129,6 +214,37 @@ public class Frag3 extends Fragment {
                 getCurrentLocation();
             }
         }
+    }
+
+
+    private double distance(double lat1, double long1, double lat2, double long2) {
+
+        //Calculate distance
+        double longDiff = long1 - long2;
+        //Calculate distance
+        double distance = Math.sin(deg2rad(lat1))
+                * Math.sin(deg2rad(lat2))
+                + Math.cos(deg2rad(lat1))
+                * Math.cos(deg2rad(lat2))
+                * Math.cos(deg2rad(longDiff));
+        distance = Math.acos(distance);
+        //Convert distance radian to degree
+        distance = rad2deg(distance);
+        //Distance in meters
+        distance = distance * 111139;
+        //Return distance value
+        return distance;
+
+    }
+
+    //Convert radian to degree
+    private double rad2deg(double distance) {
+        return (distance * 180.0/Math.PI);
+    }
+
+    //Convert degree to radian
+    private double deg2rad(double lat1) {
+        return (lat1*Math.PI/180.0);
     }
 
     private void setButtonUI(String text, int color) {
