@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.PatternMatcher;
 import android.view.LayoutInflater;
@@ -37,7 +38,6 @@ public class Frag3 extends Fragment {
 
     boolean isCommuted = false;
     Button commute_button;
-    private View view;
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
 
@@ -62,6 +62,7 @@ public class Frag3 extends Fragment {
             //Request permission
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
+
 
         commute_button = (Button) view.findViewById(R.id.commute_button);
         commute_button.setOnClickListener( new View.OnClickListener() {
