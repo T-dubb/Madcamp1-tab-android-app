@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.Tab_Android.Tab1.Frag1;
 import com.example.Tab_Android.Tab2.Frag2;
 import com.example.Tab_Android.Tab0.Frag0;
+import com.example.Tab_Android.Tab3.Frag3;
 import com.google.android.material.tabs.TabLayout;
 
 public class TabActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class TabActivity extends AppCompatActivity {
         adapter.addFragment(new Frag0());
         adapter.addFragment(new Frag1());
         adapter.addFragment(new Frag2());
-        adapter.addFragment(new Frag0());
+        adapter.addFragment(new Frag3());
 
         //ViewPager Fragment 연결
         viewPager.setAdapter(adapter);

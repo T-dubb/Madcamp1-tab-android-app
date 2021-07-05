@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    tools:context=".Tab2.CatFragment">
+    tools:context=".Tab2.Frag2">
 
 
     <ImageView
