@@ -75,8 +75,6 @@ public class Frag3 extends Fragment {
     double lat1 =36.37418, long1 = 127.3659; //Location of the company
     double lat2=0, long2=0; //Location of the user
     double dist; //Distance of the company and the use
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,10 +105,11 @@ public class Frag3 extends Fragment {
         totalcommute = (TextView) view.findViewById(R.id.totalcommute);
         commute_button.setOnClickListener( new View.OnClickListener() {
             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
                 if(isInRange){
-                    if(isCommuted == false){
+                    if(!isCommuted){
                         clicktime = System.currentTimeMillis();
                         Date date = new Date(clicktime);
                         String commutetime = dateFormat.format(date);
@@ -187,6 +186,8 @@ public class Frag3 extends Fragment {
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
+                            googleMap.clear();
+
                             //Get lat long numbers
                             lat2 = location.getLatitude();
                             long2 = location.getLongitude();
@@ -225,6 +226,8 @@ public class Frag3 extends Fragment {
         });
     }
 
+    private void deleteMarker() {
+    }
 
 
     @Override
