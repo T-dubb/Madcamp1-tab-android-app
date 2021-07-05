@@ -37,7 +37,7 @@ public class Frag3 extends Fragment {
     Button commute_button;
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
-    double lat1 =36.35737634769886, long1 = 127.38079581159096; //Location of the company
+    double lat1 =36.37418, long1 = 127.3659; //Location of the company
     double lat2=0, long2=0; //Location of the user
     double dist; //Distance of the company and the use
 
@@ -124,7 +124,6 @@ public class Frag3 extends Fragment {
                             //Add marker on map
                             googleMap.addMarker(user);
                             googleMap.addMarker(company);
-
                         }
                     });
                 }
