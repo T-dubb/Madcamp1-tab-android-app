@@ -2,8 +2,13 @@ package com.example.Tab_Android.Tab3;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -35,6 +40,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -195,8 +202,10 @@ public class Frag3 extends Fragment {
                             System.out.format("Distance: %2f", dist);
 
                             //Create marker options
-                            MarkerOptions user = new MarkerOptions().position(latLng_current).title("you are here");
-                            MarkerOptions company = new MarkerOptions().position(latLng_company).title("company");
+                            MarkerOptions user = new MarkerOptions().position(latLng_current).title("you are here")
+                                    .icon(BitmapFromVector(getActivity().getApplicationContext(), R.drawable.ic_baseline_fiber_manual_record_24));
+                            MarkerOptions company = new MarkerOptions().position(latLng_company).title("company")
+                                    .icon(BitmapFromVector(getActivity().getApplicationContext(), R.drawable.ic_baseline_apartment_24));
                             //Zoom map
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng_current, 17));
                             //Add marker on map
@@ -266,5 +275,27 @@ public class Frag3 extends Fragment {
         commute_button.setBackgroundColor(ContextCompat.getColor( getActivity(), color));
     }
 
+    private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
+        // below line is use to generate a drawable.
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+
+        // below line is use to set bounds to our vector drawable.
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+
+        // below line is use to create a bitmap for our
+        // drawable which we have added.
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+
+        // below line is use to add bitmap in our canvas.
+        Canvas canvas = new Canvas(bitmap);
+
+        // below line is use to draw our
+        // vector drawable in canvas.
+        vectorDrawable.draw(canvas);
+
+        // after generating our bitmap we are returning our bitmap.
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
 }
+
 
