@@ -6,13 +6,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.os.PatternMatcher;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -22,6 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.Tab_Android.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -36,18 +33,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static androidx.core.content.ContextCompat.checkSelfPermission;
-
-public class Frag3 extends Fragment {
+public class Frag3_backup_taewoo extends Fragment {
 
     boolean isCommuted = false;
-    boolean isInRange;
+    boolean isInRange = false;
     Button commute_button;
     TextView interval_time;
     TextView commute_time;
@@ -79,10 +73,73 @@ public class Frag3 extends Fragment {
         }
 
 
+        commute_button = (Button) view.findViewById(R.id.commute_button);
+        interval_time = (TextView) view.findViewById(R.id.interval_time);
+        commute_time = (TextView) view.findViewById(R.id.commute_time);
+        leave_time = (TextView) view.findViewById(R.id.leave_time);
+        commute_button.setOnClickListener( new View.OnClickListener() {
+            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            @Override
+            public void onClick(View view) {
+                if(isInRange){
+                    if(isCommuted == false){
+                        clicktime = System.currentTimeMillis();
+                        Date date = new Date(clicktime);
+                        String commutetime = dateFormat.format(date);
+                        commute_time.setText("출근시각: " + commutetime );
+                        leave_time.setText("퇴근시각: ");
+                        interval_time.setText("총 " + Long.toString(0) + "초 근무했습니다");
 
+                        isCommuted = true;
+                        setButtonUI("Leave", R.color.red);
+                        Toast.makeText(view.getContext(),"출근 완료",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        long temp = clicktime;
+                        clicktime = System.currentTimeMillis();
+                        Date tempdate = new Date(temp);
+                        Date date = new Date(clicktime);
+                        long intervaltime = (date.getTime() - tempdate.getTime())/1000+1;
 
+                        if(intervaltime <= 2){
+                            Toast.makeText(view.getContext(),"엥 벌써 퇴근하시게요..?",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(intervaltime > 15){
+                            String string_s = ""+intervaltime;
+                            String total_work = "총 " + Long.toString(intervaltime) + "초 근무했습니다.";
 
+                            String toomuchwork = "세상에 " + intervaltime + "초나 일하셨네요...ㄷㄷ";
 
+                            SpannableStringBuilder sp = new SpannableStringBuilder(total_work);
+                            sp.setSpan(new ForegroundColorSpan(Color.parseColor("#8B0000")), 2, (2+string_s.length()), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            Toast.makeText(view.getContext(), toomuchwork ,Toast.LENGTH_SHORT).show();
+                            String leavetime = dateFormat.format(date);
+                            leave_time.setText("퇴근시각: "+leavetime);
+                            interval_time.setText(sp);
+                            isCommuted=false;
+                            setButtonUI("Commute", R.color.green);
+                        }
+                        else{
+                            String string_s = ""+intervaltime;
+                            String total_work = "총 " + Long.toString(intervaltime) + "초 근무했습니다.";
+                            SpannableStringBuilder sp = new SpannableStringBuilder(total_work);
+                            sp.setSpan(new ForegroundColorSpan(Color.parseColor("#006400")), 2, (2+string_s.length()), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            String leavetime = dateFormat.format(date);
+                            leave_time.setText("퇴근시각: "+leavetime);
+                            interval_time.setText(sp);
+                            isCommuted=false;
+                            setButtonUI("Commute", R.color.green);
+                            Toast.makeText(view.getContext(),"퇴근 완료",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(view.getContext(),"직장과 너무 멀리 있습니다",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         //Return view
         return view;
