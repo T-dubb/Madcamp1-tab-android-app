@@ -30,16 +30,18 @@ import com.google.android.gms.tasks.Task;
 import org.jetbrains.annotations.NotNull;
 
 
-public class Frag3 extends Fragment {
+public class Frag3_backup extends Fragment {
     // Initialize variable
     boolean isCommuted = false;
     boolean isInRange = false;
     Button commute_button;
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
-    double lat1 =36.35737634769886, long1 = 127.38079581159096; //Location of the company
+    double lat1 =36.374146, long1 = 127.365920; //Location of the company
     double lat2=0, long2=0; //Location of the user
-    double dist; //Distance of the company and the use
+    double dist; //Distance of the company and the user
+    int flag=0;
+
 
 
     @Override
@@ -70,14 +72,15 @@ public class Frag3 extends Fragment {
             @Override
             public void onClick(View view) {
                 if(isInRange){
-                    if (isCommuted) {
-                        isCommuted=false;
-                        setButtonUI("Commute", R.color.green);
-                        Toast.makeText(view.getContext(),"출근 완료",Toast.LENGTH_SHORT).show();
-                    } else {
+                    if(!isCommuted){
                         isCommuted = true;
                         setButtonUI("Leave", R.color.red);
                         Toast.makeText(view.getContext(),"퇴근 완료",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        isCommuted=false;
+                        setButtonUI("Commute", R.color.green);
+                        Toast.makeText(view.getContext(),"출근 완료",Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
@@ -102,28 +105,22 @@ public class Frag3 extends Fragment {
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
+                            //Initialize lat lng
+                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                            /**
                             //Get lat long numbers
                             lat2 = location.getLatitude();
                             long2 = location.getLongitude();
-
-                            //Initialize lat lng
-                            LatLng latLng_company = new LatLng(lat1, long1);
-                            LatLng latLng_current = new LatLng(lat2, long2);
-
-
                             //Calculate distance
                             dist = distance(lat1, long1, lat2, long2);
                             if (dist<=100) isInRange = true;
-                            System.out.format("Distance: %2f", dist);
-
+*/
                             //Create marker options
-                            MarkerOptions user = new MarkerOptions().position(latLng_current).title("you are here");
-                            MarkerOptions company = new MarkerOptions().position(latLng_company).title("company");
+                            MarkerOptions options = new MarkerOptions().position(latLng).title("here");
                             //Zoom map
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng_current, 17));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
                             //Add marker on map
-                            googleMap.addMarker(user);
-                            googleMap.addMarker(company);
+                            googleMap.addMarker(options);
 
                         }
                     });
@@ -161,7 +158,7 @@ public class Frag3 extends Fragment {
         //Convert distance radian to degree
         distance = rad2deg(distance);
         //Distance in meters
-        distance = distance * 111139;
+        distance = distance * 1.609344 *1000;
         //Return distance value
         return distance;
 
