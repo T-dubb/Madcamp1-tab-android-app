@@ -1,14 +1,15 @@
 package com.example.Tab_Android;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-
+import com.example.Tab_Android.Tab0.Frag0;
 import com.example.Tab_Android.Tab1.Frag1;
 import com.example.Tab_Android.Tab2.Frag2;
-import com.example.Tab_Android.Tab0.Frag0;
 import com.example.Tab_Android.Tab3.Frag3;
+
 import com.google.android.material.tabs.TabLayout;
 
 public class TabActivity extends AppCompatActivity {

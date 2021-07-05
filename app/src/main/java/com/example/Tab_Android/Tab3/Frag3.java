@@ -52,10 +52,12 @@ public class Frag3 extends Fragment {
     // Initialize variable
     boolean isCommuted = false;
     boolean isInRange;
+    int totalcommuted = 0;
     Button commute_button;
     TextView interval_time;
     TextView commute_time;
     TextView leave_time;
+    TextView totalcommute;
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
 
@@ -93,6 +95,7 @@ public class Frag3 extends Fragment {
         interval_time = (TextView) view.findViewById(R.id.interval_time);
         commute_time = (TextView) view.findViewById(R.id.commute_time);
         leave_time = (TextView) view.findViewById(R.id.leave_time);
+        totalcommute = (TextView) view.findViewById(R.id.totalcommute);
         commute_button.setOnClickListener( new View.OnClickListener() {
             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
             @Override
@@ -134,6 +137,7 @@ public class Frag3 extends Fragment {
                             leave_time.setText("퇴근시각: "+leavetime);
                             interval_time.setText(sp);
                             isCommuted=false;
+                            totalcommute.setText("총 "+(totalcommuted++)+"회 출근");
                             setButtonUI("Commute", R.color.green);
                         }
                         else{
@@ -146,6 +150,7 @@ public class Frag3 extends Fragment {
                             leave_time.setText("퇴근시각: "+leavetime);
                             interval_time.setText(sp);
                             isCommuted=false;
+                            totalcommute.setText("총 "+(totalcommuted++)+"회 출근");
                             setButtonUI("Commute", R.color.green);
                             Toast.makeText(view.getContext(),"퇴근 완료",Toast.LENGTH_SHORT).show();
                         }
