@@ -23,6 +23,35 @@
         android:backgroundTint="@color/green"
         android:layout_centerHorizontal="true"/>
 
+    <TextView
+        android:layout_marginTop="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/interval_time"
+        android:layout_below="@id/commute_button"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="총 0초 근무했습니다"/>
+    <TextView
+        android:layout_marginTop="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/commute_time"
+        android:layout_below="@id/interval_time"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:text="출근시각: "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leave_time"
+        android:layout_below="@id/commute_time"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:text="퇴근시각: "/>
+
 
 
 </RelativeLayout>
