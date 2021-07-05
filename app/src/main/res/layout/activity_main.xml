@@ -17,7 +17,8 @@
             android:layout_gravity="bottom"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/CustomTabText"/>
 
     </androidx.viewpager.widget.ViewPager>
 </LinearLayout>
