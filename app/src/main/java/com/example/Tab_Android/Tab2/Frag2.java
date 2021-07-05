@@ -19,7 +19,6 @@ import com.example.Tab_Android.R;
 
 import java.util.Objects;
 
-
 public class Frag2 extends Fragment {
 
     Scene rootScene;

@@ -4,9 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tab2_main"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:paddingBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,39 +14,94 @@
     tools:context=".Tab2.Frag2">
 
 
-    <ImageView
-        android:id="@+id/imageView"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gallery"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="120dp"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/cats" />
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        android:id="@+id/imageView_c"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentLeft="true"
+        >
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/cats"
+            />
+    </androidx.cardview.widget.CardView>
 
 
-
-    <ImageView
-        android:id="@+id/imageView2"
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="120dp"
+        android:id="@+id/imageView2_c"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/food"
-        android:layout_toEndOf="@id/imageView"/>
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentRight="true"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/food"
+            />
+    </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <androidx.cardview.widget.CardView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/icecream"
-        android:layout_below="@id/imageView"/>
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        android:id="@+id/imageView3_c"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/imageView_c"
+        android:layout_marginRight="30dp"
+        >
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icecream"
+            />
+    </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <androidx.cardview.widget.CardView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:layout_below="@id/imageView2"
-        android:layout_toRightOf="@id/imageView3"
-        app:srcCompat="@drawable/rail" />
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        android:id="@+id/imageView4_c"
+        android:layout_marginBottom="30dp"
+        android:layout_below="@id/imageView2_c"
+        android:layout_alignParentRight="true"
+        >
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/rail"
+            />
+    </androidx.cardview.widget.CardView>
+
 
 
 </RelativeLayout>
