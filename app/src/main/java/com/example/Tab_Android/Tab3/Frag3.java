@@ -37,7 +37,7 @@ import static androidx.core.content.ContextCompat.checkSelfPermission;
 public class Frag3 extends Fragment {
 
     boolean isCommuted = false;
-    boolean isInRange = false;
+    int distance = 99;
     Button commute_button;
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
@@ -69,7 +69,7 @@ public class Frag3 extends Fragment {
         commute_button.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isInRange == true){
+                if(distance <= 100){
                     if(isCommuted == false){
                         isCommuted = true;
                         setButtonUI("Leave", R.color.red);
@@ -82,7 +82,7 @@ public class Frag3 extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(view.getContext(),"직장과 너무 멀리 있습니다",Toast.LENGTH_SHORT).show();햣
+                    Toast.makeText(view.getContext(),"직장과 너무 멀리 있습니다",Toast.LENGTH_SHORT).show();
                 }
             }
         });
