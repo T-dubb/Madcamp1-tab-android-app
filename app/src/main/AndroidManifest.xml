@@ -30,6 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Tab2.SubActivity1"/>
+        <activity android:name=".Tab2.SubActivity2"/>
+        <activity android:name=".Tab2.SubActivity3"/>
+        <activity android:name=".Tab2.SubActivity4"/>
     </application>
 
 </manifest>
