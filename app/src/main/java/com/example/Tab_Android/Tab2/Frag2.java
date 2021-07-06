@@ -85,47 +85,44 @@ public class Frag2 extends Fragment {
 
     }
 /**
-    public void onViewCreated(View view, Bundle SavedInstanceState) {
-        ViewGroup sceneRoot = requireView().findViewById(R.id.tab2_main);
-        // Create the scenes
-        rootScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_album, getActivity());
-        catScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_cat, getActivity());
-        foodScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_food, getActivity());
-        dessertScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_dessert, getActivity());
-        landScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_land, getActivity());
-
-
-        Album1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TransitionManager.go(catScene, fadeTransition);
-            }
-        });
-        Album2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TransitionManager.go(foodScene, fadeTransition);
-            }
-        });
-        Album3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TransitionManager.go(dessertScene, fadeTransition);
-            }
-        });
-        Album4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TransitionManager.go(landScene, fadeTransition);
-            }
-        });
-
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                TransitionManager.go(rootScene, fadeTransition);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
-    }*/
+ public void onViewCreated(View view, Bundle SavedInstanceState) {
+ ViewGroup sceneRoot = requireView().findViewById(R.id.tab2_main);
+ // Create the scenes
+ rootScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_album, getActivity());
+ catScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_cat, getActivity());
+ foodScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_food, getActivity());
+ dessertScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_dessert, getActivity());
+ landScene = Scene.getSceneForLayout(sceneRoot, R.layout.tab2_view_land, getActivity());
+ Album1.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+TransitionManager.go(catScene, fadeTransition);
+}
+});
+ Album2.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+TransitionManager.go(foodScene, fadeTransition);
+}
+});
+ Album3.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+TransitionManager.go(dessertScene, fadeTransition);
+}
+});
+ Album4.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+TransitionManager.go(landScene, fadeTransition);
+}
+});
+ OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+@Override
+public void handleOnBackPressed() {
+TransitionManager.go(rootScene, fadeTransition);
+}
+};
+ requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+ }*/
 }
