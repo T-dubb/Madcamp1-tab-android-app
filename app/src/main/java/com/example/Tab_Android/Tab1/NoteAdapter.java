@@ -1,6 +1,9 @@
 package com.example.Tab_Android.Tab1;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +50,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
         LinearLayout layoutAddress;
         CheckBox checkBox;
-        //ImageButton checkBox;
+        ImageButton callbutton;
         ImageButton deleteButton;
 
         public ViewHolder(View itemView){
@@ -55,7 +58,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
             layoutAddress = itemView.findViewById(R.id.layoutAddress);
             checkBox = itemView.findViewById(R.id.checkBox);
             deleteButton = itemView.findViewById(R.id.deleteButton);
-
+            callbutton = itemView.findViewById(R.id.callbutton);
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,6 +76,24 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
                     database.execSQL(deleteSql);
                 }
             });
+            callbutton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    String Address = (String) checkBox.getText();
+                    int indexOf = Address.indexOf("연락처: ");
+                    String Callars = Address.substring(indexOf+5,indexOf+16);
+                    Toast.makeText(v.getContext(),Callars,Toast.LENGTH_SHORT).show();
+                    Context c = v.getContext();
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:"+Callars));
+                    try{
+                        c.startActivity(intent);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+
         }
         public void setItem(Note item){
             checkBox.setText(item.getAddress());

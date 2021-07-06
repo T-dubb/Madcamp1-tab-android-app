@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -23,11 +24,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB529yYfuW1-z2xvQ-x7_AZ9aYFDTctRzk" />
 
-        <activity android:name=".TabActivity">
+        <activity
+            android:exported="true"
+            android:name=".TabActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action
+                    android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Tab2.SubActivity1"/>
