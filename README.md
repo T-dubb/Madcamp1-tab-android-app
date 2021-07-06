@@ -32,8 +32,8 @@ Phone address page with save, delete, and bookmark features.
 * Implemented swipe refresh function
 
 <p float="left">
-<img src="https://user-images.githubusercontent.com/49232148/124530748-11a57600-de48-11eb-89d2-36b39495d94b.jpg" width="400" height="800">
-<img src="https://user-images.githubusercontent.com/49232148/124530744-10744900-de48-11eb-9a8a-4e6caff4846d.jpg" width="400" height="800">
+<img src="https://user-images.githubusercontent.com/49232148/124561484-e8510e00-de78-11eb-8dbb-6998364ce800.jpg" width="400" height="800">
+<img src="https://user-images.githubusercontent.com/49232148/124561489-e9823b00-de78-11eb-933d-0d9e9f537cd2.jpg" width="400" height="800">
 </p>
 
 
