@@ -35,7 +35,7 @@
         android:layout_marginRight="30dp"
         android:layout_alignParentLeft="true"
         >
-        <ImageView
+        <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:id="@+id/imageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
