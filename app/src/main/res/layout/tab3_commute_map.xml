@@ -13,7 +13,7 @@
         android:id="@+id/google_map"
         android:name= "com.google.android.gms.maps.SupportMapFragment"/>
     <Button
-        android:layout_marginTop="15sp"
+        android:layout_marginTop="60sp"
         android:id="@+id/commute_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
