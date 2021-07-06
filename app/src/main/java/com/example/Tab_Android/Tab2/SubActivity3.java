@@ -11,6 +11,6 @@ public class SubActivity3 extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab2_view_food);
+        setContentView(R.layout.tab2_view_dessert);
     }
 }
