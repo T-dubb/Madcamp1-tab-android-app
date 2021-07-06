@@ -1,53 +1,60 @@
 # Tab-Android-App
 
-Tab-Android-App is an android java app with 4 tabs using ViewPager.   
+Tab-Android-App is an android java app with 4 tabs using ViewPager. Used java and android studio.  
 The pages include:  
-- **MAIN**:  tap to display area, current time, temperature, weather and more.
-- **CONTACTS**: includes save, delete, and bookmark phone addresses
+- **TAB**: tab for switching to main, contacts, album, commute page   
+- **MAIN**: tap to display area, current time, temperature, weather and more
+- **CONTACTS**: includes save, delete, and bookmark phone address features
 - **ALBUM**: gallery page with album folders
 - **COMMUTE**: enables to check commute via app 
 
+
+
 ## Page Explanation
-#### 0. Tap
-By connecting ViewPager2 and Tablayer, the fragment can be switched.
+### 0. Tab
+By connecting ViewPager2 and Tablayer, the fragment can be switched.        
+Connets main, contacts, album, and commute page.   
 
-#### 1. MAIN   
-A page that displays the region, current time, temperature, weather, etc...
-* Get system time and print it
-* Display various time and weather information using OpenWeatherMap API and Volley
 
-#### 2. CONTACTS
-Phone address page with save, delete, and bookmark features.   
+### 1. MAIN   
+A page that displays the region, current time, temperature, weather, and etc.     
+* Display system time on main fragment
+* Display time and weather information using OpenWeatherMap API and Volley
+<img src="https://user-images.githubusercontent.com/49232148/124562213-bab89480-de79-11eb-90e3-9252ef1eb90b.gif" width="400" height="800">
+
+
+### 2. CONTACTS
+Phone address page with save, delete, and bookmark features.    
 * Store names and contact information using SQLite database
-* Listing contact information using recycler view
-* Implement Add, Wish, and Delete buttons
-* Press the phone button to switch to the phone screen.
-* Implement swipe refresh function
+* List contact information using RecyclerView
+* Implemented Add, Wish, and Delete buttons
+* Press the phone icon to switch to dial the number
+* Implemented swipe refresh function
 
 <p float="left">
 <img src="https://user-images.githubusercontent.com/49232148/124530748-11a57600-de48-11eb-89d2-36b39495d94b.jpg" width="400" height="800">
 <img src="https://user-images.githubusercontent.com/49232148/124530744-10744900-de48-11eb-9a8a-4e6caff4846d.jpg" width="400" height="800">
 </p>
 
-#### 3. ALBUM   
-intent를 사용해서 카테고리별 앨범 activity로 전환함
 
-#### 4. COMMUTE 
+### 3. ALBUM   
+Album page with multiple folders
+* Transition to each album activity from album fragment using Intent
+* Utilized GridLayout, CardView, and ImageView for image display
+* Includes album and image display page
+<img src="https://user-images.githubusercontent.com/49232148/124562202-b7250d80-de79-11eb-8961-6003b7090923.gif" width="400" height="800">
+
+### 4. COMMUTE 
 Page that enables to check commute via app.    
 The user can press the commute button if the user is within 100m distance from the company.    
 Features include: 
 * Integration with **Google Map API**   
 * Getting and updating current location   
+* Calculate the distance of the user and the company   
 * Calculate hours of duty using the commute button   
-<p float="left">
-<img src="https://user-images.githubusercontent.com/49232148/124530752-123e0c80-de48-11eb-96fd-70ce6ffcc236.jpg" width="400" height="800">
-<img src="https://user-images.githubusercontent.com/49232148/124530756-12d6a300-de48-11eb-90c5-35c23bc0e71f.jpg" width="400" height="800">
-</p>
+<img src="https://user-images.githubusercontent.com/49232148/124562208-b9876780-de79-11eb-86fc-187c08083006.gif" width="400" height="800">
 
 
-
-
-## Getting Started
 
 ## Contacts
 Contributors
