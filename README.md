@@ -38,7 +38,7 @@ Features include:
 ## Getting Started
 
 ## Contacts
-Contributor
+Contributors
 - Yeeun Song, yeeunsong1019@gmail.com
 - Taewoo Kim,    
 
