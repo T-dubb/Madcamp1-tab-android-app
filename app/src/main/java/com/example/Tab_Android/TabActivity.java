@@ -39,10 +39,9 @@ public class TabActivity extends AppCompatActivity {
 
         //ViewPager과 TabLayout 연결
         tabLayout.setupWithViewPager(viewPager);
-
+        tabLayout.getTabAt(0).setText("Main");
         tabLayout.getTabAt(1).setText("Contacts");
         tabLayout.getTabAt(2).setText("Album");
-        tabLayout.getTabAt(0).setText("Main");
         tabLayout.getTabAt(3).setText("Commute");
 
     }

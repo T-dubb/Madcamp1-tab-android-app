@@ -17,6 +17,7 @@
         android:theme="@style/Theme.ViewPagerExample"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".Tab2.CatActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
